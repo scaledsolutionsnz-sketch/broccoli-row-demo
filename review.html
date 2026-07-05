@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leave a Review | Broccoli Row, Nelson</title>
+<meta name="description" content="Tell us how your visit to Broccoli Row went — your feedback helps us keep getting it right.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in wrap">
+    <a href="index.html" class="brand">
+      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><g class="leaf" fill="#2f7d50"><circle cx="22" cy="24" r="9"/><circle cx="32" cy="18" r="10"/><circle cx="42" cy="24" r="9"/><circle cx="27" cy="31" r="8"/><circle cx="38" cy="31" r="8"/></g><path d="M32 34v18" fill="none" stroke="#2f7d50" stroke-width="3.4" stroke-linecap="round"/></svg>
+      Broccoli Row
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#menu">Menu</a>
+      <a href="index.html#about">Our story</a>
+      <a href="index.html#visit">Visit</a>
+    </nav>
+    <a href="tel:+6435489621" class="nav-cta">03 548 9621</a>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span>Your feedback</span>
+    <h1>How was your visit?</h1>
+  </div>
+</section>
+
+<div class="rf-wrap">
+  <p style="font-size:1.15rem;color:var(--muted)">Tap the stars to rate your experience at Broccoli Row.</p>
+  <div class="rf-stars" id="stars">
+    <button class="rf-star" data-v="1" aria-label="1 star"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+    <button class="rf-star" data-v="2" aria-label="2 stars"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+    <button class="rf-star" data-v="3" aria-label="3 stars"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+    <button class="rf-star" data-v="4" aria-label="4 stars"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+    <button class="rf-star" data-v="5" aria-label="5 stars"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+  </div>
+  <p class="rf-note">Four or five stars sends you to Google. Three or fewer opens a short private note that comes straight to us.</p>
+</div>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-bottom" style="border:0;justify-content:center">
+      <span>© <span id="yr"></span> Broccoli Row, Nelson &nbsp;·&nbsp; <a href="terms.html">Terms</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+// Replace with the live Google review link when connected.
+var GOOGLE_REVIEW_URL = "https://g.page/r/PLACEHOLDER";
+var stars = document.querySelectorAll('.rf-star');
+stars.forEach(function(s){
+  s.addEventListener('mouseenter',function(){ paint(+s.dataset.v); });
+  s.addEventListener('click',function(){
+    var v = +s.dataset.v;
+    if (v >= 4) { window.location.href = GOOGLE_REVIEW_URL; }
+    else { window.location.href = "private.html?rating=" + v; }
+  });
+});
+document.getElementById('stars').addEventListener('mouseleave',function(){ paint(0); });
+function paint(n){ stars.forEach(function(s){ s.classList.toggle('lit', +s.dataset.v <= n); }); }
+</script>
+</body>
+</html>

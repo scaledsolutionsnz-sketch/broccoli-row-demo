@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Share Your Feedback | Broccoli Row, Nelson</title>
+<meta name="description" content="Tell Broccoli Row what we could do better — your note comes straight to us, privately.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in wrap">
+    <a href="index.html" class="brand">
+      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><g class="leaf" fill="#2f7d50"><circle cx="22" cy="24" r="9"/><circle cx="32" cy="18" r="10"/><circle cx="42" cy="24" r="9"/><circle cx="27" cy="31" r="8"/><circle cx="38" cy="31" r="8"/></g><path d="M32 34v18" fill="none" stroke="#2f7d50" stroke-width="3.4" stroke-linecap="round"/></svg>
+      Broccoli Row
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#menu">Menu</a>
+      <a href="index.html#about">Our story</a>
+      <a href="index.html#visit">Visit</a>
+    </nav>
+    <a href="tel:+6435489621" class="nav-cta">03 548 9621</a>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span>Private feedback</span>
+    <h1>Tell us how we can do better</h1>
+  </div>
+</section>
+
+<div class="doc" style="padding-bottom:40px;text-align:center">
+  <p style="color:var(--muted);max-width:52ch;margin:0 auto">We'd rather hear it from you than read it later. This note comes straight to the team at Broccoli Row — no public post, just us.</p>
+</div>
+
+<div style="max-width:600px;margin:0 auto;padding:0 24px 90px">
+  <div class="form-card">
+    <form id="fbForm" action="https://formsubmit.co/hello@broccolirow.co.nz" method="POST">
+      <!-- FormSubmit config -->
+      <input type="hidden" name="_subject" value="New private feedback — Broccoli Row">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="#">
+
+      <div class="field">
+        <label for="name">Your name</label>
+        <input type="text" id="name" name="name" placeholder="First and last name" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      </div>
+      <div class="field">
+        <label for="rating">Your rating</label>
+        <div class="rating-pick">
+          <div class="stars" id="starView"></div>
+        </div>
+        <input type="hidden" id="rating" name="rating" value="">
+      </div>
+      <div class="field">
+        <label for="feedback">What happened, and how can we make it right?</label>
+        <textarea id="feedback" name="feedback" placeholder="Tell us about your visit — the food, the service, the wait, anything at all." required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;padding:17px">Send feedback</button>
+    </form>
+
+    <div class="success" id="success">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <h2 style="color:var(--green-deep)">Thank you</h2>
+      <p style="color:var(--muted)">We really appreciate you taking the time. Suz and the team will read every word — and we'll do our best to make the next visit a better one.</p>
+      <a href="index.html" class="btn btn-outline" style="margin-top:20px">Back to home</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-bottom" style="border:0;justify-content:center">
+      <span>© <span id="yr"></span> Broccoli Row, Nelson &nbsp;·&nbsp; <a href="terms.html">Terms</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+// pre-fill rating from ?rating=
+var params = new URLSearchParams(window.location.search);
+var rating = parseInt(params.get('rating'),10);
+if (!(rating >= 1 && rating <= 5)) rating = 0;
+document.getElementById('rating').value = rating || '';
+var starView = document.getElementById('starView');
+var starSvg = '<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+var starEmpty = '<svg viewBox="0 0 24 24" fill="none" stroke="#d8cdb4" stroke-width="1.6"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+var html='';
+for (var i=1;i<=5;i++){ html += (i<=rating)?starSvg:starEmpty; }
+starView.innerHTML = html;
+
+// AJAX submit -> show success state (no redirect, no reCAPTCHA)
+var form = document.getElementById('fbForm');
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  var btn = form.querySelector('button[type=submit]');
+  btn.textContent = 'Sending…'; btn.disabled = true;
+  fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} })
+    .then(function(){ done(); })
+    .catch(function(){ done(); });
+});
+function done(){
+  document.getElementById('fbForm').style.display='none';
+  document.getElementById('success').classList.add('show');
+}
+</script>
+</body>
+</html>
