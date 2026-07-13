@@ -2,15 +2,15 @@
    Display: Syne · Body: Albert Sans · Accent: deep garden green */
 
 :root{
-  --green:#1c1c1c;
-  --green-deep:#000000;
-  --green-ink:#111111;
-  --cream:#faf6ec;
-  --bone:#f1ead9;
-  --paper:#ffffff;
-  --ink:#1a2119;
-  --muted:#5a6558;
-  --line:#e4dcc9;
+  --green:#f2efe6;
+  --green-deep:#d9d5c8;
+  --green-ink:#0a0a0a;
+  --cream:#0b0b0b;
+  --bone:#151515;
+  --paper:#1b1b1b;
+  --ink:#f2efe8;
+  --muted:#a5a5a5;
+  --line:#2b2b2b;
   --sun:#e8b23a;
   --radius:20px;
   --radius-sm:14px;
@@ -63,7 +63,7 @@ section{position:relative}
 
 /* ---- nav ---- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;transition:.35s ease;
-  background:rgba(250,246,236,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  background:rgba(10,10,10,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;
   max-width:var(--wrap);margin:0 auto;padding:14px 24px}
 .brand{display:flex;align-items:center;gap:11px;font-family:var(--font-d);font-weight:800;font-size:1.15rem;letter-spacing:-.01em}
@@ -91,10 +91,12 @@ section{position:relative}
 .hero{min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--green-ink);isolation:isolate;padding-top:clamp(104px,15vh,168px)}
 .hero-slides{position:absolute;inset:0;z-index:-2}
 .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease;
-  background-size:cover;background-position:center;filter:saturate(.92) contrast(1.04)}
+  background-size:cover;background-position:center;filter:saturate(1.22) contrast(1.08) brightness(1.04)}
 .hero-slide.active{opacity:1}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(180deg,rgba(18,39,27,.42) 0%,rgba(18,39,27,.55) 45%,rgba(18,39,27,.9) 100%)}
+  background:
+    linear-gradient(90deg,rgba(8,8,8,.92) 0%,rgba(8,8,8,.6) 40%,rgba(8,8,8,.12) 76%,rgba(8,8,8,0) 100%),
+    linear-gradient(180deg,rgba(8,8,8,.35) 0%,rgba(8,8,8,0) 26%,rgba(8,8,8,0) 60%,rgba(8,8,8,.72) 100%)}
 .hero-inner{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 24px 88px;color:#fff}
 .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.82rem;font-weight:600;letter-spacing:.22em;
   text-transform:uppercase;color:#cfcfcf;margin-bottom:22px}
@@ -301,3 +303,12 @@ section{position:relative}
 /* Owner + food image in About */
 .about-media .about-inset{position:absolute;right:-16px;bottom:-24px;width:42%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius);border:5px solid var(--paper,#fff);box-shadow:var(--shadow);}
 @media(max-width:640px){.about-media .about-inset{width:46%;right:8px;bottom:-16px;}}
+
+/* ===== ALL-BLACK THEME CONTRAST FIXES ===== */
+.btn-primary,.nav-cta,.about-tag,.btn-primary:hover,.btn-outline:hover{color:#0c0c0c}
+.about-tag span{color:#333}
+.rev-card p{color:#e7e3d9}
+.doc p,.doc li{color:#c9c9c9}
+.badge{background:rgba(255,255,255,.08)}
+.field input:focus,.field textarea:focus,.field select:focus{background:#161616}
+.about-media .about-inset{border-color:#0b0b0b}
