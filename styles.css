@@ -88,7 +88,7 @@ section{position:relative}
 .btn-outline:hover{background:var(--green);color:#fff;transform:translateY(-3px)}
 
 /* ---- hero ---- */
-.hero{min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--green-ink);isolation:isolate}
+.hero{min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--green-ink);isolation:isolate;padding-top:clamp(104px,15vh,168px)}
 .hero-slides{position:absolute;inset:0;z-index:-2}
 .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease;
   background-size:cover;background-position:center;filter:saturate(.92) contrast(1.04)}
